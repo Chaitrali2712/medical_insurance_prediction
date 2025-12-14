@@ -8,16 +8,13 @@ from src.utils import MedicalInsurance
 Obj = MedicalInsurance()
 user_collection = get_user_collection()
 
-app = Flask(__name__)  # looks for ./templates by default
-
+app = Flask(__name__) 
 app.config["JWT_SECRET_KEY"] = 'secret-key'
 jwt = JWTManager(app)
 
-# ---------------- PAGE ROUTES (HTML) ----------------
 
 @app.route("/", methods=["GET"])
 def home():
-    # landing page => login page
     return render_template("login.html")
 
 
@@ -26,12 +23,9 @@ def register_page():
     return render_template("register.html")
 
 
-@app.route("/prediction", methods=["GET"])   # 👈 page route renamed to /prediction
+@app.route("/prediction", methods=["GET"])   
 def prediction_page():
     return render_template("prediction.html")
-
-
-# ---------------- API ROUTES (JSON) ----------------
 
 @app.route("/register", methods=["POST"])
 def user_registration():
